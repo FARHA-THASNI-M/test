@@ -20,6 +20,7 @@ import image43 from './image1.jpg';
 import image44 from './image3.jpg';
 
 
+
 const User = () => {
   // State to manage selected category
   const [selectedCategory, setSelectedCategory] = useState('Public Sector');
@@ -34,38 +35,45 @@ const User = () => {
 
   return (
     <div className="bg-white py-12">
-      <h2 className="text-2xl font-bold text-center mb-6">OUR MEMBERS</h2>
+      {/* Container for Heading, Links, and Images */}
+      <div className="flex justify-center items-start gap-12">
 
-      {/* Container for Links and Images (Side-by-Side) */}
-      <div className="flex justify-center items-start gap-12"> {/* flex container */}
-        
-        {/* Categories Links - Vertically Stacked */}
-        <div className="flex flex-col items-center gap-4">
-          {Object.keys(images).map((category) => (
-            <a
-              key={category}
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                setSelectedCategory(category);
-              }}
-              className={`text-gray-400 text-lg font-medium ${
-                selectedCategory === category
-                  ? 'text-black underline'
-                  : 'hover:text-black hover:underline'
-              } transition duration-300`}
-              style={{
-                textDecorationColor: '#20a7db', // Custom underline color
-              }}
-            >
-              {category}
-            </a>
-          ))}
+        {/* Column Layout for Heading and Links */}
+        <div className="flex flex-col items-center gap-8 mt-10"> {/* Added margin-top to move it down */}
+          {/* Heading */}
+          <h2 className="text-2xl font-normal text-center">
+            <span className="font-normal">OUR</span> 
+            <span className="font-semibold">MEMBERS</span>
+          </h2>
+
+          {/* Categories Links */}
+          <div className="flex flex-col items-center gap-6">
+            {Object.keys(images).map((category) => (
+              <a
+                key={category}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setSelectedCategory(category);
+                }}
+                className={`text-gray-400 text-lg font-medium ${
+                  selectedCategory === category
+                    ? 'text-black underline'
+                    : 'hover:text-black hover:underline'
+                } transition duration-300`}
+                style={{
+                  textDecorationColor: '#20a7db', // Custom underline color
+                }}
+              >
+                {category}
+              </a>
+            ))}
+          </div>
         </div>
 
-        {/* Images Grid - Horizontally Aligned */}
+        {/* Images - Horizontally Aligned with margin-top to move them down */}
         <div
-          className={`flex flex-wrap gap-4 justify-center transition-all duration-500`}
+          className="flex gap-8 justify-center transition-all duration-500 mt-6" // Added margin-top to move the images down
           key={selectedCategory} // Key triggers animation on category change
         >
           {images[selectedCategory].map((image, index) => (
@@ -84,3 +92,4 @@ const User = () => {
 };
 
 export default User;
+
