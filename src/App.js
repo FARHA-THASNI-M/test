@@ -1,9 +1,10 @@
-import React from 'react';
-import MembersSection from './components/User';
+import React from "react";
+import MembersSection from "./components/User";
 
 function App() {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen bg-white">
+      <div className="flex-grow"></div>
       <MembersSection />
     </div>
   );
