@@ -1,8 +1,11 @@
+
 import React, { useState } from 'react';
 import image11 from './image1.jpg';
 import image12 from './image1.jpg';
 import image13 from './image1.jpg';
 import image14 from './image1.jpg';
+import 'animate.css';
+
 
 import image21 from './image2.jpg';
 import image22 from './image2.jpg';
@@ -21,7 +24,8 @@ import image44 from './image3.jpg';
 
 const User = () => {
   const [selectedCategory, setSelectedCategory] = useState('Public Sector');
-
+   
+  const [isAnimate, setIsAnimate] = useState(false);
   const images = {
     'Public Sector': [image11, image12, image13, image14],
     'Private Sector': [image21, image22, image23, image24],
@@ -40,8 +44,11 @@ const User = () => {
           {Object.keys(images).map((category) => (
             <button
               key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`text-lg ${selectedCategory === category
+              onClick={() =>{ setSelectedCategory(category);
+                setIsAnimate(true);
+                setTimeout(() => setIsAnimate(false), 500);}}
+              className={`text-lg ${
+                selectedCategory === category
                 ? 'font-bold text-black font-montserrat underline'
                 : 'text-gray-400 font-medium hover:text-black hover:underline'
                 } transition duration-300`}
@@ -60,8 +67,9 @@ const User = () => {
             <img
               key={index}
               src={image}
-              alt={`${selectedCategory} Image ${index + 1}`}
-              className="w-full sm:w-[180px] h-[100px] object-cover border border-gray-300 rounded shadow hover:scale-105 transition-transform duration-300"
+              alt={`${selectedCategory} {index + 1}`}
+              className={`w-full sm:w-[180px] h-[100px] object-cover border border-gray-300
+                 rounded shadow hover:scale-105 transition-transform duration-300 ${isAnimate ? 'animate_animated  animate_swing' : '' }`}
             />
           ))}
         </div>
